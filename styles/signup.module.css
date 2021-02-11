@@ -77,3 +77,19 @@
   font-size: 12px;
   line-height: 1.8;
 }
+@media (max-width: 957px) {
+  .right {
+    margin-top: 2rem;
+    height: 400px;
+  }
+}
+
+@media (max-width: 400px) {
+  .testimonial {
+    width: 250px;
+    height: 280px;
+  }
+  .cont_txt {
+    margin-left: -1rem;
+  }
+}
