@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 
 // import Layout from "../components/layout/layout";
-// import { Spinner } from "../components/ui";
+import { Spinner } from "../components";
 import { theme } from "../theme";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -48,16 +48,14 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <StylesProvider injectFirst>
           <CssBaseline />
-          {/* {loading ? (
+          {loading ? (
             <Spinner />
-          ) : ( */}
-
-          {/* <Layout> */}
-          <CssBaseline />
-          <Component {...pageProps} />
-          {/* </Layout> */}
-
-          {/* )} */}
+          ) : (
+            <div className="mainWarper">
+              <CssBaseline />
+              <Component {...pageProps} />
+            </div>
+          )}
         </StylesProvider>
       </ThemeProvider>
     </>
