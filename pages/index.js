@@ -1,18 +1,33 @@
+import React from "react";
 import Head from "next/head";
+import Router from "next/router";
 import { Grid, Typography, Checkbox, Avatar, Divider } from "@material-ui/core";
 
-import { Input } from "../components";
+import { UserProvider, useFetchUser } from "../utils/user";
+import { Input, Spinner } from "../components";
 import { signupData } from "../data";
 
 import classes from "../styles/signup.module.css";
 
 export default function Signup() {
+  const { user, loading } = useFetchUser();
+
+  if (loading) {
+    return <Spinner />;
+  }
+
+  if (user) {
+    Router.push("/dashboard");
+    return null;
+  }
+
   return (
     <>
       <Head>
         <title>Sign Up</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Grid container style={{ height: "100vh" }} justify="space-between">
         <Grid container direction="column" justify="center" item xs={12} md={4}>
           <Typography className={classes.title} variant="h5">
@@ -22,6 +37,7 @@ export default function Signup() {
             Create your Tech account today, it's free. Enter your credentials
             below and click 'Create Account'.
           </Typography>
+
           <form className={classes.form}>
             {signupData.map(({ name, placehlder }, i) => (
               <Input key={i} label={name} placeholder={placehlder} />
@@ -45,7 +61,14 @@ export default function Signup() {
             </Grid>
 
             <div className={classes.createBtn}>
-              <button>Create Account</button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  Router.push("/api/login");
+                }}
+              >
+                Create Account
+              </button>
             </div>
           </form>
         </Grid>

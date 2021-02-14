@@ -26,7 +26,7 @@ export default function Login() {
             </Typography>
             <form>
               {loginData.map(({ name, placehlder }, i) => (
-                <Input label={name} placeholder={placehlder} />
+                <Input label={name} placeholder={placehlder} key={i} />
               ))}
             </form>
             <Grid
